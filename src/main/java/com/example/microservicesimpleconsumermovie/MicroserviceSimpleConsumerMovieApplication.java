@@ -2,14 +2,20 @@ package com.example.microservicesimpleconsumermovie;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.web.client.RestTemplate;
 
+@EnableDiscoveryClient
 @SpringBootApplication
+@ComponentScan()
 public class MicroserviceSimpleConsumerMovieApplication {
 
 	// 实例化一个bean，并用方法的名称命名对象
 	@Bean
+	@LoadBalanced
 	public RestTemplate restTemplate() {
 		return new RestTemplate();
 	}
